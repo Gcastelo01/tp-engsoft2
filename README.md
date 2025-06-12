@@ -4,16 +4,11 @@ Bruna Caroline
 Gabriel Castelo Branco
 Paloma Fernanda Sabino Tavares
 
-Sistema de Gerenciamento de Acesso e Cálculos
-
+Foi desenvolvido um Sistema de Gerenciamento de Acesso e Cálculos
 Este é um sistema integrado que combina:
-
 Um módulo de gerenciamento de usuários e controle de acesso;
-
 Calculadoras: básica; física; bhaskara;
-
 Um sistema de permissões baseado em níveis de acesso;
-
 O sistema permite que diferentes usuários tenham acesso a diferentes funcionalidades conforme seu nível de privilégio.
 
 Tecnologias e Bibliotecas Utilizadas
