@@ -1,4 +1,4 @@
-def soma(num1:float, num2:float)->float:
+def soma(num1: float, num2: float) -> float:
     """
     Retorna a soma de dois números.
 
@@ -10,6 +10,7 @@ def soma(num1:float, num2:float)->float:
         float: A soma de num1 e num2.
     """
     return num1 + num2
+
 
 def subtracao(num1: float, num2: float) -> float:
     """
@@ -23,6 +24,7 @@ def subtracao(num1: float, num2: float) -> float:
         float: A diferença entre num1 e num2.
     """
     return num1 - num2
+
 
 def divisao(num1: float, num2: float) -> float:
     """
@@ -41,6 +43,7 @@ def divisao(num1: float, num2: float) -> float:
     if num2 == 0:
         raise ZeroDivisionError("Erro: Divisão por zero!")
     return num1 / num2
+
 
 def multiplicacao(num1: float, num2: float) -> float:
     """
@@ -68,6 +71,7 @@ def exponenciacao(num1: float, num2: float) -> float:
         float: O resultado de num1 elevado à potência de num2.
     """
     return num1 ** num2
+
 
 def calculadora():
     """

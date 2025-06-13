@@ -6,6 +6,7 @@ from Calculadora_fisica import menu as calculadora_fisica
 # Variavel global de número de usuario
 CONTADOR_ID = 0
 
+
 @dataclass
 class Usuarios:
     """Dataclass representativa de usuários do sistema. 
@@ -20,7 +21,7 @@ class Usuarios:
         nivel (int): Nível de acesso do usuário
         senha (int, optional): Senha de acesso do usuário ao sistema. Default é 123.
     """
-    def __init__(self, id: int, nome: str, username: str, email: str, setor:str, cargo:str, nivel: int, senha=123):
+    def __init__(self, id: int, nome: str, username: str, email: str, setor: str, cargo: str, nivel: int, senha=123):
         self.id = id
         self.nome = nome
         self.username = username
@@ -29,6 +30,7 @@ class Usuarios:
         self.cargo = cargo
         self.nivel = nivel
         self.senha = senha
+
 
 @dataclass
 class Funcionalidades:
@@ -171,7 +173,6 @@ class SistemaGerenciamentoAcesso:
             return True
         return False
 
-
     def mostrarFuncionalidadesLiberadas(self, id_usuario):
         """
         Exibe e retorna as funcionalidades liberadas para um usuário.
@@ -224,7 +225,7 @@ class SistemaGerenciamentoAcesso:
         )
 
         return usuario
-    
+
     def novaFuncionalidade(self):
         """
         Cria e retorna uma nova funcionalidade baseada na entrada do usuário.
@@ -235,7 +236,7 @@ class SistemaGerenciamentoAcesso:
         global contadorFunc
         contadorFunc += 1
         idFuncionalidade = contadorFunc
-        
+    
         nomeFuncionalidade = input("Digite o nome da funcionalidade: ")
         nivelFuncionalidade = input("Digite o nível da funcionalidade: ")
 
@@ -267,7 +268,7 @@ class SistemaGerenciamentoAcesso:
             return False
         if any(usuario.username == username and usuario.id != id_usuario for usuario in self.usuarios):
             return False
-        
+
         for usuario in self.usuarios:
             if usuario.id == id_usuario:
                 if nivel < 0:

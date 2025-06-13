@@ -1,5 +1,6 @@
 import math
 
+
 def calcular_raizes(a: float, b: float, c: float) -> str:
     """
     Calcula as raízes de uma equação quadrática do tipo ax^2 + bx + c = 0.
@@ -28,6 +29,7 @@ def calcular_raizes(a: float, b: float, c: float) -> str:
         raiz1 = (-b + math.sqrt(delta)) / (2*a)
         raiz2 = (-b - math.sqrt(delta)) / (2*a)
         return f"A equação possui duas raízes reais: {raiz1} e {raiz2}"
+
 
 def calcular_raiz_linear(a: float, b: float) -> str:
     """

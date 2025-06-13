@@ -1,49 +1,65 @@
 import math
 
+
 def velocidade_media(distancia: float, tempo: float) -> float:
     return distancia / tempo
+
 
 def aceleracao_media(variacao_velocidade: float, tempo: float) -> float:
     return variacao_velocidade / tempo
 
+
 def calcular_forca(massa: float, aceleracao: float) -> float:
     return massa * aceleracao
+
 
 def calcular_trabalho(forca: float, distancia: float, angulo: float) -> float:
     return forca * distancia * math.cos(math.radians(angulo))
 
+
 def calcular_energia_potencial_gravitacional(massa: float, altura: float) -> float:
     return massa * 9.8 * altura
+
 
 def calcular_energia_cinetica(massa: float, velocidade: float) -> float:
     return 0.5 * massa * velocidade ** 2
 
+
 def calcular_potencia(trabalho: float, tempo: float) -> float:
     return trabalho / tempo
+
 
 def calcular_pressao(forca: float, area: float) -> float:
     return forca / area
 
+
 def calcular_lei_de_ohm(tensao: float, resistencia: float) -> float:
     return tensao / resistencia
+
 
 def calcular_potencia_eletrica(tensao: float, corrente: float) -> float:
     return tensao * corrente
 
+
 def calcular_carga_eletrica(corrente: float, tempo: float) -> float:
     return corrente * tempo
+
 
 def calcular_energia_eletrica(potencia: float, tempo: float) -> float:
     return potencia * tempo
 
+
 def calcular_energia_elastica(constante_elastica: float, deformacao: float) -> float:
     return 0.5 * constante_elastica * deformacao ** 2
+
 
 def calcular_frequencia(periodo: float) -> float:
     return 1 / periodo
 
+
 def calcular_energia_mecanica(energia_cinetica: float, energia_potencial: float) -> float:
     return energia_cinetica + energia_potencial
+
 
 def menu():
     while True:
@@ -130,6 +146,7 @@ def menu():
             print("Energia mecânica:", calcular_energia_mecanica(energia_cinetica, energia_potencial))
         else:
             print("Opção inválida! Tente novamente.")
+
 
 if __name__ == "__main__":
     menu()
