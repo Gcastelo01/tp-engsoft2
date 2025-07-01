@@ -123,7 +123,7 @@ class SistemaGerenciamentoAcesso:
             usuario (Usuario): O objeto usuário a ser cadastrado.
         """
         self.usuarios.append(usuario)
-        
+
         for funcionalidade in self.funcionalidades:
             if usuario.nivel >= funcionalidade.nivel:
                 funcUsuario = FuncionalidadeUsuarios(
