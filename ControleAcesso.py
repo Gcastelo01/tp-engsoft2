@@ -9,7 +9,7 @@ CONTADOR_ID = 0
 
 @dataclass
 class Usuarios:
-    """Dataclass representativa de usuários do sistema. 
+    """Dataclass representativa de usuários do sistema.
 
     Args:
         id (int): Id do usuário. Definido automaticametne pelo sistema
@@ -21,7 +21,18 @@ class Usuarios:
         nivel (int): Nível de acesso do usuário
         senha (int, optional): Senha de acesso do usuário ao sistema. Default é 123.
     """
-    def __init__(self, id: int, nome: str, username: str, email: str, setor: str, cargo: str, nivel: int, senha=123):
+
+    def __init__(
+        self,
+        id: int,
+        nome: str,
+        username: str,
+        email: str,
+        setor: str,
+        cargo: str,
+        nivel: int,
+        senha=123,
+    ):
         self.id = id
         self.nome = nome
         self.username = username
@@ -34,13 +45,14 @@ class Usuarios:
 
 @dataclass
 class Funcionalidades:
-    """Definição de funcionalidade do sistema 
+    """Definição de funcionalidade do sistema
 
     Args:
         id (int): _description_
         nome (str): _description_
         nivel (int): _description_
     """
+
     def __init__(self, id: int, nome: str, nivel: int):
         self.id = id
         self.nome = nome
@@ -58,12 +70,15 @@ class FuncionalidadeUsuarios:
         idFuncionalidade (int): Identificador da funcionalidade.
         liberado (bool): Indica se a funcionalidade está liberada para o usuário.
     """
+
     id: int
     idUsuario: int
     idFuncionalidade: int
     liberado: bool
 
-    def __init__(self, id: int, idUsuario: int, idFuncionalidade: int, liberado: bool) -> None:
+    def __init__(
+        self, id: int, idUsuario: int, idFuncionalidade: int, liberado: bool
+    ) -> None:
         """
         Inicializa a classe FuncionalidadeUsuarios com os parâmetros fornecidos.
 
@@ -130,16 +145,16 @@ class SistemaGerenciamentoAcesso:
                     id=len(self.funcionalidadeUsuarios) + 1,
                     idUsuario=usuario.id,
                     idFuncionalidade=funcionalidade.id,
-                    liberado=True
+                    liberado=True,
                 )
             else:
                 funcUsuario = FuncionalidadeUsuarios(
                     id=len(self.funcionalidadeUsuarios) + 1,
                     idUsuario=usuario.id,
                     idFuncionalidade=funcionalidade.id,
-                    liberado=False
+                    liberado=False,
                 )
-            self.funcionalidadeUsuarios.append(funcUsuario)                
+            self.funcionalidadeUsuarios.append(funcUsuario)
 
     def associarFuncionalidadeUsuarios(self, funcionalidadeUsuarios):
         """
@@ -165,7 +180,10 @@ class SistemaGerenciamentoAcesso:
         if not usuario:
             return False
 
-        funcionalidade = next((func for func in self.funcionalidades if func.id == id_funcionalidade), None)
+        funcionalidade = next(
+            (func for func in self.funcionalidades if func.id == id_funcionalidade),
+            None,
+        )
         if not funcionalidade:
             return False
 
@@ -187,12 +205,18 @@ class SistemaGerenciamentoAcesso:
         for funcUsuario in self.funcionalidadeUsuarios:
             if funcUsuario.idUsuario == id_usuario and funcUsuario.liberado:
                 funcionalidadeAssociada = next(
-                    (funcionalidade for funcionalidade in self.funcionalidades 
-                     if funcionalidade.id == funcUsuario.idFuncionalidade), None
+                    (
+                        funcionalidade
+                        for funcionalidade in self.funcionalidades
+                        if funcionalidade.id == funcUsuario.idFuncionalidade
+                    ),
+                    None,
                 )
                 if funcionalidadeAssociada:
                     liberadas.append(funcionalidadeAssociada.id)
-                    print(f"{funcionalidadeAssociada.id}- {funcionalidadeAssociada.nome}")
+                    print(
+                        f"{funcionalidadeAssociada.id}- {funcionalidadeAssociada.nome}"
+                    )
         print("0- Sair")
         return liberadas
 
@@ -206,7 +230,7 @@ class SistemaGerenciamentoAcesso:
         global CONTADOR_ID
         CONTADOR_ID += 1
         idUsuario = CONTADOR_ID
-        
+
         nomeUsuario = input("Digite o nome do usuário: ")
         usernameUsuario = input("Digite o username do usuário: ")
         emailUsuario = input("Digite o email do usuário: ")
@@ -221,7 +245,7 @@ class SistemaGerenciamentoAcesso:
             email=emailUsuario,
             setor=setorUsuario,
             cargo=cargoUsuario,
-            nivel=nivelUsuario
+            nivel=nivelUsuario,
         )
 
         return usuario
@@ -236,14 +260,12 @@ class SistemaGerenciamentoAcesso:
         global contadorFunc
         contadorFunc += 1
         idFuncionalidade = contadorFunc
-    
+
         nomeFuncionalidade = input("Digite o nome da funcionalidade: ")
         nivelFuncionalidade = input("Digite o nível da funcionalidade: ")
 
         funcionalidade = Funcionalidades(
-            id=idFuncionalidade,
-            nome=nomeFuncionalidade,
-            nivel=nivelFuncionalidade
+            id=idFuncionalidade, nome=nomeFuncionalidade, nivel=nivelFuncionalidade
         )
 
         return funcionalidade
@@ -266,7 +288,10 @@ class SistemaGerenciamentoAcesso:
         """
         if not any(usuario.id == id_usuario for usuario in self.usuarios):
             return False
-        if any(usuario.username == username and usuario.id != id_usuario for usuario in self.usuarios):
+        if any(
+            usuario.username == username and usuario.id != id_usuario
+            for usuario in self.usuarios
+        ):
             return False
 
         for usuario in self.usuarios:
@@ -291,7 +316,9 @@ class SistemaGerenciamentoAcesso:
         """
         if any(usuario.id == id_usuario for usuario in self.usuarios):
             self.usuarios = [user for user in self.usuarios if user.id != id_usuario]
-            self.funcionalidadeUsuarios = [fu for fu in self.funcionalidadeUsuarios if fu.idUsuario != id_usuario]
+            self.funcionalidadeUsuarios = [
+                fu for fu in self.funcionalidadeUsuarios if fu.idUsuario != id_usuario
+            ]
             print(f"Usuário {id_usuario} removido com sucesso.")
             return True
         else:
@@ -314,62 +341,86 @@ if __name__ == "__main__":
     sistema.funcionalidades.append(funcionalidade4)
     sistema.funcionalidades.append(funcionalidade5)
     sistema.funcionalidades.append(funcionalidade6)
-      
+
     ## Cadastrar usuários TESTE
-    admin = Usuarios(id=0, nome="Admin", username="admin", email="admin@", setor="", cargo="", nivel=5)
+    admin = Usuarios(
+        id=0,
+        nome="Admin",
+        username="admin",
+        email="admin@",
+        setor="",
+        cargo="",
+        nivel=5,
+    )
     sistema.cadastrarUsuario(admin)
-       
-    print("Bem vindo, esse é um sistema para demonstrar o controle de acesso de vários usuários no sistema")
+
+    print(
+        "Bem vindo, esse é um sistema para demonstrar o controle de acesso de vários usuários no sistema"
+    )
     while True:
         print("\n----- MENU -----\n")
         print("1- Login")
         print("0- Sair")
-        
+
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
             print("\n--- LOGIN ---\n")
             userName = input("Username: ")
             senha = input("Senha: ")
-            
+
             autenticado, userId = sistema.verificarSenha(userName, senha)
-        
-            if(autenticado):
-                print("\n----- TP/TESTES DE SOFTWARE -----\n")
+
+            if autenticado:
+                print("\n----- TP/Engenharia de Software II -----\n")
                 print("Dado seu nível de acesso, essas são suas opções:")
                 liberadas = sistema.mostrarFuncionalidadesLiberadas(userId)
                 opcao = input("Escolha uma opção: ")
-                
-                if (int(opcao) in liberadas):                    
+
+                if int(opcao) in liberadas:
                     for f in liberadas:
-                        if(int(opcao) == f):
-                            if opcao == '1':
+                        if int(opcao) == f:
+                            if opcao == "1":
                                 user = sistema.novoUsuario()
                                 sistema.cadastrarUsuario(user)
-                            if opcao == '2':
-                                removerId = input("Qual o ID do usuário que deve ser removido? ")
+                            if opcao == "2":
+                                removerId = input(
+                                    "Qual o ID do usuário que deve ser removido? "
+                                )
                                 sistema.removerUsuario(removerId)
-                            if opcao == '3':
-                                atualizarId = input("Qual o ID do usuário que deve ser editado? ")                            
+                            if opcao == "3":
+                                atualizarId = input(
+                                    "Qual o ID do usuário que deve ser editado? "
+                                )
                                 nomeUsuario = input("Digite o nome do usuário: ")
-                                usernameUsuario = input("Digite o username do usuário: ")
+                                usernameUsuario = input(
+                                    "Digite o username do usuário: "
+                                )
                                 emailUsuario = input("Digite o email do usuário: ")
                                 setorUsuario = input("Digite o setor do usuário: ")
                                 cargoUsuario = input("Digite o cargo do usuário: ")
                                 nivelUsuario = input("Digite o nível do usuário: ")
 
-                                sistema.atualizarUsuario(atualizarId, nomeUsuario, usernameUsuario, emailUsuario, setorUsuario, cargoUsuario, nivelUsuario)
-                            if opcao == '4':
+                                sistema.atualizarUsuario(
+                                    atualizarId,
+                                    nomeUsuario,
+                                    usernameUsuario,
+                                    emailUsuario,
+                                    setorUsuario,
+                                    cargoUsuario,
+                                    nivelUsuario,
+                                )
+                            if opcao == "4":
                                 calculadora()
-                            
-                            if opcao == '5':
+
+                            if opcao == "5":
                                 calculadora_bhaskara()
-                                
-                            if opcao == '6':
+
+                            if opcao == "6":
                                 calculadora_fisica()
                 else:
                     print("Você não pode acessar essa funcionalidade ou ela não existe")
-                        
+
         elif opcao == "0":
             print("Saindo do programa...")
             break
